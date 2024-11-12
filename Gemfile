@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.10'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'devise'
 gem 'rails', '~> 6.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -36,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.

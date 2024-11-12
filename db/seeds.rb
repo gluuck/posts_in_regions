@@ -108,3 +108,19 @@ unless Region.exists?
     Region.create(r_num: num, title: title)
   end
 end
+
+
+
+unless User.exists?(role: 'admin')
+  admin = User.create(
+    email: 'admin@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    region_id: Region.first.id,
+    first_name: 'Admin',
+    last_name: 'Admin',
+    patronymic: 'Admin',
+    role: 'admin'
+  )
+  puts admin
+end
