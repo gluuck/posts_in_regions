@@ -8,11 +8,14 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    set_region
+  end
 
   # GET /posts/new
   def new
     @post = Post.new
+    set_region
   end
 
   # GET /posts/1/edit
@@ -21,10 +24,12 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post.user_id = current_user.id
+    @post.region = set_region
+    @post.aasm_state
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to set_region, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +56,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to region_posts_path, status: :see_other, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -63,8 +68,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def set_region
+    @region = Region.find(params[:region_id])
+  end
+
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :region_id, :user_id)
   end
 end

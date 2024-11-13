@@ -1,2 +1,14 @@
 h3 
   = @region.title
+
+= link_to 'Новый пост', new_region_post_path(@region) 
+
+table
+  thead 
+    tr
+      th Название
+      th Содержание
+      th Автор
+  tbody
+    - @posts.each do |post|
+      = render 'posts/post', post: post if post.aasm_state == 'approved'
