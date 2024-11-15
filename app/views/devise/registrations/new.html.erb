@@ -25,7 +25,7 @@
 
   <div class="field">
     <%= f.label :Регион %><br />
-    <%= f.select :region_id, Region.all[2..-1].map{|k,_| [k.title.humanize, k.id]}, prompt: true, id: :region_id %>
+    <%= f.select :region_id, Region.all[2..-1].map{ |k,_| [k.title.humanize, k.id] }, prompt: true, id: :region_id %>
   </div>
 
   <div class="field">

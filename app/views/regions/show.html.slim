@@ -9,6 +9,9 @@ table
       th Название
       th Содержание
       th Автор
+      th Создан
+      th Файлы
+      th Фото
   tbody
     - @posts.each do |post|
-      = render 'posts/post', post: post if post.aasm_state == 'approved'
+      = render 'posts/post', post: post, region: @region if post.aasm_state == 'approved'

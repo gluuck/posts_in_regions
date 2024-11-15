@@ -10,4 +10,8 @@ p
 
 => link_to "Edit", edit_region_post_path(@post)
 '|
-=< link_to "Back", region_path(@region)
+=< link_to "Back", @region
+- if policy(@post).change_state?
+  = form_with(model: [@region, @post], url: region_change_state_path(@region, @post), method: :patch) do |f|
+    = f.select :aasm_state, Post.aasm.events.map(&:name), prompt: true, id: :post_id
+    = f.submit

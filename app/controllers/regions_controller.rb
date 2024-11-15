@@ -4,7 +4,7 @@ class RegionsController < ApplicationController
   end
 
   def show
-    @region = Region.find(params[:id])
+    @region = Region.includes(:posts, :users).find(params[:id])
     @posts = @region.posts
   end
 end

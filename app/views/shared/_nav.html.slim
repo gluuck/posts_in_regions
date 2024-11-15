@@ -1,0 +1,10 @@
+nav class="navbar navbar-expand-lg navbar-light bg-light"
+  div class="container-fluid"
+    - unless current_user.present?
+      = link_to 'Sign in', new_user_session_path, class: "nav-link active", 'aria-current': "page"
+      = link_to 'Sign up', new_user_registration_path, class: "nav-link active", 'aria-current': "page"
+    - else
+      = link_to current_user.email, region_user_path(@region, current_user) if @region.present?
+      = button_to 'Exit', destroy_user_session_path , method: :delete, class: "nav-link active", 'aria-current': "page"
+      = link_to 'Все посты', admin_posts_path if current_user.admin?
+

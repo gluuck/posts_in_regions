@@ -1,0 +1,11 @@
+table
+  thead 
+    tr
+      th Название
+      th Содержание
+      th Автор
+      th Создан
+      th Статус
+  tbody
+    - @posts.each do |post|
+      = render 'posts/post', post: post, region: @region

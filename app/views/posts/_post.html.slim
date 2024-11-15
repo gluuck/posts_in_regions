@@ -1,4 +1,10 @@
-tr
-  td = post.title
-  td = post.body 
+tr 
+  td = link_to post.title, region_post_path(region, post)
+  td = post.body.truncate(50)
   td = post.user.email
+  td = post.created_at.strftime('%d.%m.%Y %H:%m')
+  - if policy(post).edit?
+    td = post.aasm_state 
+    td => link_to "Edit", edit_region_post_path(region, post) 
+    td =< link_to "Back", region_path(region)
+  td =< link_to "К регионам", root_path  

@@ -1,0 +1,14 @@
+table
+  thead 
+    tr
+      th Название
+      th Содержание
+      th Автор
+      th Создан
+      th Статус
+      th Файлы
+      th Фото       
+      
+  tbody
+  - @posts.each do |post|
+    = render 'posts/post', post: post, region: post.region

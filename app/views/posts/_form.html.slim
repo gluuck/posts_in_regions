@@ -1,4 +1,4 @@
-= form_for [@region, @post] do |f|
+= form_with(model: [@region, @post], url: region_posts_path(@region, @post)) do |f|
   - if @post.errors.any?
     #error_explanation
       h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
@@ -12,4 +12,11 @@
   .field
     = f.label :body
     = f.text_area :body
-  .actions = f.submit
+  .field
+    = f.label :Файлы
+    = f.file_field :files, multiple: true
+  .field
+    = f.label :Фотографии  
+    = f.file_field :images, multiple: true
+  .actions
+    = f.submit
