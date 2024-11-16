@@ -16,15 +16,15 @@ class Post < ApplicationRecord
     state :under_review
     state :approved
     state :rejected
-  
+
     event :to_review do
       transitions from: :draft, to: :under_review
     end
     event :to_approve do
-      transitions from: [:draft, :under_review, :approved], to: :approved
+      transitions from: %i[draft under_review approved], to: :approved
     end
     event :to_reject do
-      transitions from: [:draft, :under_review, :approved], to: :rejected
+      transitions from: %i[draft under_review approved], to: :rejected
     end
   end
 end

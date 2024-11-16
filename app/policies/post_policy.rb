@@ -4,7 +4,7 @@ class PostPolicy < ApplicationPolicy
       scope.all
     end
   end
-  
+
   def create?
     record.region == user.region || user.admin?
   end
@@ -33,4 +33,3 @@ class PostPolicy < ApplicationPolicy
     user.admin?
   end
 end
-

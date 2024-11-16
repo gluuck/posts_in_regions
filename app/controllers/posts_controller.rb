@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post.region = set_region
     files = params[:post][:files]
     images = params[:post][:images]
-    authorize @post    
+    authorize @post
     respond_to do |format|
       if @post.save
         attach_files(@post, files) if files.present?
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
-  def update    
+  def update
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to set_region, notice: 'Post was successfully updated.' }
@@ -81,7 +81,7 @@ class PostsController < ApplicationController
       tempfile.binmode
       tempfile.rewind
       post.files.attach(io: File.open(tempfile.path), filename: file)
-    end    
+    end
   rescue ActiveSupport::MessageVerifier::InvalidSignature => e
     logger.error "File attachment failed: #{e.message}"
   end

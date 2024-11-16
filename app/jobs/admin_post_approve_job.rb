@@ -5,3 +5,4 @@ class AdminPostApproveJob < ApplicationJob
     post.to_approve!
   end
 end
+

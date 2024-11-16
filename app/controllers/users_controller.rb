@@ -5,4 +5,3 @@ class UsersController < ApplicationController
     @region = Region.find(params[:region_id])
   end
 end
-

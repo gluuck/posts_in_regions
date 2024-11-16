@@ -8,3 +8,4 @@ class RegionsController < ApplicationController
     @posts = @region.posts
   end
 end
+
